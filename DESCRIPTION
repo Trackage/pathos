@@ -5,6 +5,9 @@ Authors@R: c(person("Michael D.","Sumner", role = c("aut", "cre"), email = "mdsu
 Description: A 'path' is one way to think about a sequence of ordered records and another is as a 'set of edges', 
     links to the previous record is another. This package provides tools to easily convert between these two models. 
 Depends: R (>= 3.4.0)
+Imports: raster, 
+         dplyr
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 6.0.1
