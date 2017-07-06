@@ -58,8 +58,8 @@ prepare_segments <- function(x, scale = 3600, ...) {
   u <- raster::values(x[[1]]) * scale
   v <- raster::values(x[[2]]) * scale
   bad <- is.na(u)
-  xy <- raster::coordinates(x)[!bad, ]
+  xy <- sp::coordinates(x)[!bad, ]
   u <- u[!bad]
   v <- v[!bad]
-  data.frame(x0 = xy[, 1], y0 = xy[, 2], x1 = xy[, 1] + u, y1 = xy[,2] + u)
+  data.frame(x0 = xy[, 1], y0 = xy[, 2], x1 = xy[, 1] + u, y1 = xy[,2] + v)
 }
