@@ -1,3 +1,5 @@
+
+```{r }
 prim_valid_only <- function(prim) {
   ## which segments have to go? find where interchanging vertex pairs is not unique
   prim$segment$useg <-  apply(cbind(prim$segment$.vertex0, prim$segment$.vertex1), 1, function(x) paste(sort(x), collapse = "-"))
@@ -96,4 +98,11 @@ plot(irt, border = grey(rep(0.2, nrow(irt)), alpha = seq(0.5, 0.05, length = nro
 prim <- PRIMITIVE(irt)
 edges <- prim_valid_only(prim)
 check_prim(irt, pathos::find_paths(edges$.v0, edges$.v1), prim)
+```
 
+
+---
+title: "internal_boundaries.R"
+author: "mdsumner"
+date: "Mon Jul 17 00:02:21 2017"
+---
