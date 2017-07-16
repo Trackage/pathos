@@ -6,8 +6,12 @@ Description: A 'path' is one way to think about a sequence of ordered records an
     links to the previous record is another. This package provides tools to easily convert between these two models. 
 Depends: R (>= 3.4.0)
 Imports: raster, 
-         dplyr
+         dplyr, 
+         tibble
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
+Suggests: testthat
+ByteCompile: true
+
