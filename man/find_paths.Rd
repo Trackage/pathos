@@ -35,4 +35,6 @@ ord2 <- order_paths(d$vertex0, d$vertex1)
 d[ord2, ]
 
 find_paths(d$vertex0, d$vertex1)
+
+
 }

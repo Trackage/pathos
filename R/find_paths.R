@@ -28,43 +28,13 @@
 #'  "g", "a",
 #'  "e", "f"
 #')
-#' ord2 <- order_paths(d$vertex0, d$vertex1)
-#' d[ord2, ]
-#'
+
 #' find_paths(d$vertex0, d$vertex1)
 #'
 #'
 find_paths <- function(.v0, .v1) {
   cycs <- cycles(cbind(.v0, .v1))
   tibble::tibble(.v0 = .v0[cycs$row], .v1 = .v1[cycs$row], path = cycs$cycle)
-}
-find_paths0 <- function(.v0, .v1) {
-  ## do not run this line within mutate below, as the local scope overrides
-  ord <- order_paths(.v0, .v1)
-  ## make sure classify paths is run on the ordered pairs ...
-  cdpath <- classify_paths(.v0[ord], .v1[ord])
-
-  ## todo input .data frame and use quosures for user-specificed start/end vertex id
-  tibble::tibble(.v0 = .v0, .v1 = .v1)[ord, ] %>%
-    dplyr::mutate(path = cdpath)
-}
-
-order_paths <- function(.v0, .v1) {
-  ## put paths in order one after the other
-  #u <- unique(c(t(cbind(.v1, .v0))))
-  l <- factor(as.vector(t(cbind(.v0, .v1)[order(.v1), ])))
-  #order(as.integer(l)[seq(2, length(l), by = 2)])
-  as.integer(l[seq(2, length(l), by = 2)])
-}
-## then find breaks in the last/first sequence
-oddminusone <- function(x) {
-  sub <- x %% 2 != 0
-  x[sub] <- x[sub] - 1
-  x
-}
-classify_paths <- function(.v0, .v1) {
-  path <- oddminusone(c(0, cumsum(abs(diff(head(.v0, -1) != tail(.v1, -1))))) )
-  c(path, tail(path, 1))
 }
 
 cycles <- function(aa) {
@@ -88,4 +58,28 @@ cycles <- function(aa) {
   l <- split(set0, c(0, cumsum(abs(diff(is.na(set0))))))
   bind_rows(lapply(l[!unlist(lapply(l, function(x) all(is.na(x))))], function(x) tibble(row = x)), .id = "cycle")
 }
+
+
+## whoops, nothing to see here
+# find_paths0 <- function(.v0, .v1) {
+#   ## do not run this line within mutate below, as the local scope overrides
+#   ord <- order_paths(.v0, .v1)
+#   ## make sure classify paths is run on the ordered pairs ...
+#   cdpath <- classify_paths(.v0[ord], .v1[ord])
+#
+#   ## todo input .data frame and use quosures for user-specificed start/end vertex id
+#   tibble::tibble(.v0 = .v0, .v1 = .v1)[ord, ] %>%
+#     dplyr::mutate(path = cdpath)
+# }
+#
+# ## then find breaks in the last/first sequence
+# oddminusone <- function(x) {
+#   sub <- x %% 2 != 0
+#   x[sub] <- x[sub] - 1
+#   x
+# }
+# classify_paths <- function(.v0, .v1) {
+#   path <- oddminusone(c(0, cumsum(abs(diff(head(.v0, -1) != tail(.v1, -1))))) )
+#   c(path, tail(path, 1))
+# }
 

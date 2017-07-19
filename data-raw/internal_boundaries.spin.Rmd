@@ -104,5 +104,5 @@ check_prim(irt, pathos::find_paths(edges$.v0, edges$.v1), prim)
 ---
 title: "internal_boundaries.R"
 author: "mdsumner"
-date: "Mon Jul 17 00:02:21 2017"
+date: "Mon Jul 17 00:18:27 2017"
 ---
